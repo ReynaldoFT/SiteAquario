@@ -1,17 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SiteAquario.Models;
-//using SiteAquario.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
-//builder.Services.AddDbContext<SiteAquarioContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("SiteAquarioContext") ?? throw new InvalidOperationException("Connection string 'SiteAquarioContext' not found.")));
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<SiteAquarioContext>(options => 
+            options.UseSqlServer(connectionString));
+
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddDbContext<Contexto>(options => options.UseSqlServer("Server=<LocalHost>\\SQLEXPRESS;DataBase = bd_aquario; Trusted_Connection = True; User ID=Admin; Password=Admin"));
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
