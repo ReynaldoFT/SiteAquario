@@ -14,6 +14,7 @@ namespace SiteAquario.Data
         {
         }
 
+        //public DbSet<ValoresSensor> ValoresSensor { get; set; }
         public DbSet<SiteAquario.Models.ValoresSensor> ValoresSensor { get; set; } = default!;
     }
 }
